@@ -2,4 +2,9 @@
 set -euo pipefail
 mkdir -p public
 cp index.html public/index.html
-curl -L --fail 'https://sdmntprsouthcentralus.oaiusercontent.com/files/00000000-5d90-81f7-b9f6-ca90eb86b479/raw?se=2026-09-23T14%3A24%3A43Z&sp=r&sv=2026-02-06&sr=b&scid=763d0686-02e4-5a57-9303-730d1eadc20a&skoid=697a5987-0cd9-4222-b5b8-500b90fa271b&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-23T05%3A14%3A02Z&ske=2026-09-24T05%3A14%3A02Z&sks=b&skv=2026-02-06&sig=pCVQxRVNOmMoOD%2BVEQM44en7m9Pan/96uToKlbBmMsM%3D' -o public/pb-c001.png
+
+# Preserve the previously hosted PB-C001 asset from the current live site.
+curl -L --fail 'https://lesi-social-assets.netlify.app/pb-c001.png' -o public/pb-c001.png
+
+# PB-C004 — permanent publishing asset source for this deploy.
+curl -L --fail 'https://temp.4d4f16c61d89ec64e760039c4ec50717.r2.cloudflarestorage.com/1591912/googledrive/GOOGLEDRIVE_DOWNLOAD_FILE/response/f0b25ab399b47ed9e586fb66188b8ba7?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=7685aa30fee07632b83ea58979a398d0%2F20260930%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260930T171244Z&X-Amz-Expires=3600&X-Amz-Signature=c6125d7506bb8662cbc47d1e86ace085e6d24d7e5c8bfaf654a77618b54df3c8&X-Amz-SignedHeaders=host' -o public/pb-c004.jpg
