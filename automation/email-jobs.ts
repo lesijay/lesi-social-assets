@@ -46,6 +46,7 @@ function parseBoolean(value: unknown): boolean {
 }
 
 function parseTags(value: unknown): string[] {
+  if (Array.isArray(value)) return value.map(String).map((v) => v.trim()).filter(Boolean);
   const raw = String(value ?? "").trim();
   if (!raw) return [];
   try {
@@ -108,21 +109,35 @@ function parseGvizResponse(text: string): Record<string, unknown>[] {
   });
 }
 
+function parseJsonFeed(text: string): Record<string, unknown>[] {
+  const payload = JSON.parse(text);
+  if (Array.isArray(payload)) return payload as Record<string, unknown>[];
+  if (Array.isArray(payload?.jobs)) return payload.jobs as Record<string, unknown>[];
+  throw new Error("dispatch_feed_invalid_json_shape");
+}
+
 const fallbackJobs = (manifest.jobs as Record<string, unknown>[]).map(normalizeJob);
 
 export async function loadEmailJobs(feedUrl?: string): Promise<EmailJob[]> {
   if (!feedUrl) return fallbackJobs;
 
-  const response = await fetch(feedUrl, {
+  const separator = feedUrl.includes("?") ? "&" : "?";
+  const response = await fetch(`${feedUrl}${separator}_=${Date.now()}`, {
+    cache: "no-store",
     headers: {
-      "Cache-Control": "no-cache",
+      "Cache-Control": "no-cache, no-store, max-age=0",
       "User-Agent": "LitLambs-Systeme-Email-Worker/1.0"
     }
   });
   if (!response.ok) throw new Error(`dispatch_feed_${response.status}`);
 
   const text = await response.text();
-  return parseGvizResponse(text)
+  const trimmed = text.trim();
+  const rows = trimmed.startsWith("{") || trimmed.startsWith("[")
+    ? parseJsonFeed(trimmed)
+    : parseGvizResponse(text);
+
+  return rows
     .filter((row) => String(row.id ?? "").trim())
     .map(normalizeJob);
 }
