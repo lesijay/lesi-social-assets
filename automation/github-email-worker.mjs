@@ -5,8 +5,8 @@ const MANIFEST_PATH = "automation/email-jobs.json";
 const apiKey = process.env.SYSTEME_API_KEY;
 
 if (!apiKey) {
-  console.log("SYSTEME_API_KEY is not configured; email worker is idle.");
-  process.exit(0);
+  console.error("SYSTEME_API_KEY is not configured.");
+  process.exit(1);
 }
 
 const manifest = JSON.parse(fs.readFileSync(MANIFEST_PATH, "utf8"));
@@ -30,6 +30,14 @@ async function systemeFetch(path, init = {}) {
     throw new Error(`systeme_${response.status}:${detail.slice(0, 700)}`);
   }
   return data;
+}
+
+try {
+  await systemeFetch("/api/tags?limit=1&order=asc");
+  console.log("Systeme API authentication verified.");
+} catch (error) {
+  console.error(`Systeme API authentication failed: ${error instanceof Error ? error.message : String(error)}`);
+  process.exit(1);
 }
 
 async function listTags() {
