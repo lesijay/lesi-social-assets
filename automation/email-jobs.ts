@@ -21,4 +21,24 @@ export type EmailJob = {
   testRecipientEmail?: string;
 };
 
-export const emailJobs = manifest.jobs as EmailJob[];
+function escapeHtml(value: string): string {
+  return value
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+}
+
+function bodyTextToHtml(value: string): string {
+  return value
+    .trim()
+    .split(/\n\s*\n/)
+    .map((paragraph) => `<p>${escapeHtml(paragraph).replaceAll("\n", "<br>")}</p>`)
+    .join("");
+}
+
+export const emailJobs = (manifest.jobs as EmailJob[]).map((job) => ({
+  ...job,
+  bodyHtml: job.bodyHtml ?? bodyTextToHtml(job.bodyText ?? "")
+}));
