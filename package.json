@@ -1,0 +1,8 @@
+{
+  "name": "lesi-social-assets",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@netlify/blobs": "latest"
+  }
+}
