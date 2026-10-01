@@ -11,21 +11,25 @@ export type EmailJob = {
   includeTagNames: string[];
   excludeTagNames?: string[];
   scheduleLeadMinutes?: number;
+  createMissingIncludeTags?: boolean;
+  testRecipientEmail?: string;
 };
 
 export const emailJobs: EmailJob[] = [
   {
     id: "LL-TEST-001",
-    enabled: false,
-    approved: false,
-    sendAt: "2099-01-01T09:00:00Z",
+    enabled: true,
+    approved: true,
+    sendAt: "2026-10-01T08:40:00Z",
     subject: "Hill email automation test",
     previewText: "Automated publishing route test",
-    bodyHtml: "<p>This is a controlled test of the Lit Lambs unattended email publishing workflow.</p>",
+    bodyHtml: "<p>This is a controlled test of the Lit Lambs unattended email publishing workflow.</p><p>If you received this, the Systeme.io API worker successfully created the newsletter, isolated the test audience, scheduled the send and allowed Systeme.io to deliver it automatically.</p>",
     senderEmail: "lesi@litlambs.org",
     senderName: "Lesi Sampson",
-    includeTagNames: ["HILL TEST"],
+    includeTagNames: ["HILL TEST 2026-10-01 A"],
     excludeTagNames: [],
-    scheduleLeadMinutes: 360
+    scheduleLeadMinutes: 360,
+    createMissingIncludeTags: true,
+    testRecipientEmail: "lesi@litlambs.org"
   }
 ];
