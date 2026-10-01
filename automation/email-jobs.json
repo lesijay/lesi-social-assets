@@ -27,6 +27,25 @@
       "lastError": null,
       "scheduledAt": "2026-10-01T15:39:09.694Z",
       "publishedAt": "2026-10-01T17:09:40.716Z"
+    },
+    {
+      "id": "LL-E006",
+      "sourceDistributionId": "DIST-007",
+      "sourceQueue": "Lit Lambs Production Queue",
+      "approved": true,
+      "enabled": true,
+      "sendAt": "2026-10-02T04:00:00Z",
+      "subject": "Reminder: Parenting Prayer is tomorrow at 6:00 AM WAT",
+      "bodyText": "Good morning 💜\n\nA quick reminder that our monthly Lit Lambs Parenting Prayer is tomorrow, Saturday, October 3, at 6:00 AM WAT.\n\nWe’ll be taking time to pray intentionally about our parenting journey, our children and our families.\n\nIf you’d like to join us, the prayer details will be shared in the WhatsApp group:\n\nhttps://chat.whatsapp.com/IXpA5Q0IHx25cUTyqqoxjs?s=cl&p=i&mlu=4&ilr=4\n\nSee you tomorrow morning.\n\nLesi\nFounder, Lit Lambs",
+      "senderEmail": "lesi@litlambs.org",
+      "senderName": "Lesi Sampson",
+      "includeTagNames": [
+        "MAIN LIST"
+      ],
+      "excludeTagNames": [],
+      "scheduleLeadMinutes": 360,
+      "workerStatus": "queued",
+      "workerNote": "Hands-off October 2 architecture test and genuine Parenting Prayer reminder."
     }
   ]
 }
