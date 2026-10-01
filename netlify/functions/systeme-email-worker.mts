@@ -13,9 +13,12 @@ type WorkerState = {
   lastError?: string;
   includeTagIds?: number[];
   excludeTagIds?: number[];
+  testRecipientReady?: boolean;
+  testContactId?: number;
 };
 
 type Tag = { id: number; name: string };
+type Contact = { id: number };
 
 const API_BASE = "https://api.systeme.io";
 const STORE_NAME = "hill-systeme-email-worker";
@@ -74,12 +77,65 @@ async function listTags(): Promise<Tag[]> {
   return tags;
 }
 
+async function createTag(name: string): Promise<Tag> {
+  const data = await systemeFetch("/api/tags", {
+    method: "POST",
+    body: JSON.stringify({ name })
+  });
+  if (!Number.isInteger(data?.id)) throw new Error(`create_tag_missing_id:${name}`);
+  return { id: data.id, name: data.name ?? name };
+}
+
+async function resolveIncludeTagIds(job: EmailJob, tags: Tag[]): Promise<number[]> {
+  const ids: number[] = [];
+  for (const name of job.includeTagNames) {
+    let match = tags.find((tag) => tag.name.trim().toLowerCase() === name.trim().toLowerCase());
+    if (!match && job.createMissingIncludeTags) {
+      match = await createTag(name);
+      tags.push(match);
+    }
+    if (!match) throw new Error(`missing_tag:${name}`);
+    ids.push(match.id);
+  }
+  return ids;
+}
+
 function resolveTagIds(names: string[], tags: Tag[]): number[] {
   return names.map((name) => {
     const match = tags.find((tag) => tag.name.trim().toLowerCase() === name.trim().toLowerCase());
     if (!match) throw new Error(`missing_tag:${name}`);
     return match.id;
   });
+}
+
+async function findOrCreateContact(email: string): Promise<number> {
+  const params = new URLSearchParams({ email, limit: "10" });
+  const data = await systemeFetch(`/api/contacts?${params.toString()}`);
+  const items: Contact[] = Array.isArray(data?.items) ? data.items : [];
+  if (items.length > 1) throw new Error(`multiple_contacts_for_test_email:${email}`);
+  if (items.length === 1 && Number.isInteger(items[0]?.id)) return items[0].id;
+
+  const created = await systemeFetch("/api/contacts", {
+    method: "POST",
+    body: JSON.stringify({ email })
+  });
+  if (!Number.isInteger(created?.id)) throw new Error(`create_contact_missing_id:${email}`);
+  return created.id;
+}
+
+async function assignTagToContact(contactId: number, tagId: number) {
+  await systemeFetch(`/api/contacts/${contactId}/tags`, {
+    method: "POST",
+    body: JSON.stringify({ tagId })
+  });
+}
+
+async function ensureTestRecipient(job: EmailJob, includeTagIds: number[]): Promise<number | undefined> {
+  if (!job.testRecipientEmail) return undefined;
+  if (includeTagIds.length !== 1) throw new Error("test_job_requires_exactly_one_include_tag");
+  const contactId = await findOrCreateContact(job.testRecipientEmail);
+  await assignTagToContact(contactId, includeTagIds[0]);
+  return contactId;
 }
 
 async function saveState(state: WorkerState) {
@@ -175,10 +231,20 @@ async function processJob(job: EmailJob, now: Date) {
   }
 
   try {
-    if (!state.newsletterId) {
+    if (!state.includeTagIds || !state.excludeTagIds) {
       const tags = await listTags();
-      state.includeTagIds = resolveTagIds(job.includeTagNames, tags);
+      state.includeTagIds = await resolveIncludeTagIds(job, tags);
       state.excludeTagIds = resolveTagIds(job.excludeTagNames ?? [], tags);
+      await saveState(state);
+    }
+
+    if (job.testRecipientEmail && !state.testRecipientReady) {
+      state.testContactId = await ensureTestRecipient(job, state.includeTagIds ?? []);
+      state.testRecipientReady = true;
+      await saveState(state);
+    }
+
+    if (!state.newsletterId) {
       state.newsletterId = await createNewsletter(job);
       state.status = "created";
       state.lastError = undefined;
