@@ -50,3 +50,5 @@ jobs:
           git add automation/email-jobs.json
           git commit -m "Update Systeme email worker state [skip ci]"
           git push
+
+# Safe verification touch: newsletter manifest currently remains disabled/on hold.
