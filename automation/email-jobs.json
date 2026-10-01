@@ -16,16 +16,17 @@
       ],
       "excludeTagNames": [],
       "scheduleLeadMinutes": 360,
-      "workerStatus": "scheduled",
+      "workerStatus": "published",
       "workerNote": "Approved real end-to-end email architecture test scheduled for 2026-10-01 16:15 GMT after GitHub to Systeme authentication passed.",
       "includeTagIds": [
         1878410
       ],
       "excludeTagIds": [],
-      "lastAttemptAt": "2026-10-01T15:39:09.694Z",
+      "lastAttemptAt": "2026-10-01T17:09:40.716Z",
       "newsletterId": 5378569,
       "lastError": null,
-      "scheduledAt": "2026-10-01T15:39:09.694Z"
+      "scheduledAt": "2026-10-01T15:39:09.694Z",
+      "publishedAt": "2026-10-01T17:09:40.716Z"
     }
   ]
 }
