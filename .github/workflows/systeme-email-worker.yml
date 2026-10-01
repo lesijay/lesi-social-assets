@@ -1,0 +1,42 @@
+name: Hill Systeme Email Worker
+
+on:
+  schedule:
+    - cron: '*/15 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: hill-systeme-email-worker
+  cancel-in-progress: false
+
+jobs:
+  run-worker:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Run email worker
+        env:
+          SYSTEME_API_KEY: ${{ secrets.SYSTEME_API_KEY }}
+        run: node automation/github-email-worker.mjs
+
+      - name: Persist worker state
+        run: |
+          if git diff --quiet -- automation/email-jobs.json; then
+            echo "No worker state changes to persist."
+            exit 0
+          fi
+          git config user.name "Hill Email Worker"
+          git config user.email "actions@users.noreply.github.com"
+          git add automation/email-jobs.json
+          git commit -m "Update Systeme email worker state [skip ci]"
+          git push
