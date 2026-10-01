@@ -1,10 +1,14 @@
 import { getDeployStore, getStore } from "@netlify/blobs";
-import { emailJobs } from "../../automation/email-jobs";
+import { loadEmailJobs } from "../../automation/email-jobs";
 
 const STORE_NAME = "hill-systeme-email-worker";
 
 function netlifyGlobal(): any {
   return (globalThis as any).Netlify;
+}
+
+function env(name: string): string | undefined {
+  return netlifyGlobal()?.env?.get?.(name);
 }
 
 function store() {
@@ -15,11 +19,24 @@ function store() {
 }
 
 export default async () => {
+  let jobs;
+  try {
+    jobs = await loadEmailJobs(env("EMAIL_DISPATCH_FEED_URL"));
+  } catch (error) {
+    return Response.json({
+      worker: "systeme-email",
+      feedReady: false,
+      feedError: error instanceof Error ? error.message : String(error),
+      jobs: []
+    }, { status: 502 });
+  }
+
   const states = [];
-  for (const job of emailJobs) {
+  for (const job of jobs) {
     const state = await store().get(`jobs/${job.id}`, { type: "json" });
     states.push({
       jobId: job.id,
+      sourceDistributionId: job.sourceDistributionId ?? null,
       enabled: job.enabled,
       approved: job.approved,
       sendAt: job.sendAt,
@@ -32,7 +49,7 @@ export default async () => {
     });
   }
 
-  return Response.json({ worker: "systeme-email", jobs: states });
+  return Response.json({ worker: "systeme-email", feedReady: true, jobs: states });
 };
 
 export const config = {
