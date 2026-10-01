@@ -4,6 +4,13 @@ on:
   schedule:
     - cron: '*/15 * * * *'
   workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - 'automation/email-jobs.json'
+      - 'automation/github-email-worker.mjs'
+      - '.github/workflows/systeme-email-worker.yml'
 
 permissions:
   contents: write
@@ -23,6 +30,9 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
+
+      - name: Validate manifest
+        run: node -e "JSON.parse(require('fs').readFileSync('automation/email-jobs.json','utf8')); console.log('Manifest JSON valid.')"
 
       - name: Run email worker
         env:
