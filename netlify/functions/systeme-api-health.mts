@@ -18,7 +18,7 @@ export default async () => {
   }
 
   try {
-    const response = await fetch("https://api.systeme.io/api/tags?limit=1", {
+    const response = await fetch("https://api.systeme.io/api/contacts", {
       headers: { "X-API-Key": apiKey }
     });
 
