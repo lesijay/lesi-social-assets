@@ -15,6 +15,9 @@ type WorkerState = {
   excludeTagIds?: number[];
   testRecipientReady?: boolean;
   testContactId?: number;
+  borrowedTagId?: number;
+  borrowedTagName?: string;
+  testTagCleaned?: boolean;
 };
 
 type Tag = { id: number; name: string };
@@ -86,6 +89,16 @@ async function createTag(name: string): Promise<Tag> {
   return { id: data.id, name: data.name ?? name };
 }
 
+async function findEmptyTag(tags: Tag[]): Promise<Tag> {
+  for (const tag of tags) {
+    const params = new URLSearchParams({ tags: String(tag.id), limit: "10", order: "asc" });
+    const data = await systemeFetch(`/api/contacts?${params.toString()}`);
+    const items: Contact[] = Array.isArray(data?.items) ? data.items : [];
+    if (items.length === 0) return tag;
+  }
+  throw new Error("no_empty_tag_available_for_test");
+}
+
 async function resolveIncludeTagIds(job: EmailJob, tags: Tag[]): Promise<number[]> {
   const ids: number[] = [];
   for (const name of job.includeTagNames) {
@@ -127,6 +140,12 @@ async function assignTagToContact(contactId: number, tagId: number) {
   await systemeFetch(`/api/contacts/${contactId}/tags`, {
     method: "POST",
     body: JSON.stringify({ tagId })
+  });
+}
+
+async function removeTagFromContact(contactId: number, tagId: number) {
+  await systemeFetch(`/api/contacts/${contactId}/tags/${tagId}`, {
+    method: "DELETE"
   });
 }
 
@@ -192,6 +211,12 @@ async function verifySent(newsletterId: number): Promise<boolean> {
   return data?.state?.isSent === true;
 }
 
+async function cleanupBorrowedTag(state: WorkerState) {
+  if (state.testTagCleaned || !state.borrowedTagId || !state.testContactId) return;
+  await removeTagFromContact(state.testContactId, state.borrowedTagId);
+  state.testTagCleaned = true;
+}
+
 async function processJob(job: EmailJob, now: Date) {
   if (!job.enabled || !job.approved) return;
 
@@ -199,7 +224,20 @@ async function processJob(job: EmailJob, now: Date) {
   if (Number.isNaN(sendAt.getTime())) throw new Error(`invalid_send_at:${job.id}`);
 
   let state = await loadState(job.id);
-  if (state.status === "published") return;
+
+  if (state.status === "published") {
+    if (state.borrowedTagId && state.testContactId && !state.testTagCleaned) {
+      try {
+        await cleanupBorrowedTag(state);
+        state.lastError = undefined;
+        await saveState(state);
+      } catch (error) {
+        state.lastError = `cleanup_failed:${error instanceof Error ? error.message : String(error)}`;
+        await saveState(state);
+      }
+    }
+    return;
+  }
 
   const nowIso = now.toISOString();
   state.lastAttemptAt = nowIso;
@@ -211,6 +249,11 @@ async function processJob(job: EmailJob, now: Date) {
         state.status = "published";
         state.publishedAt = nowIso;
         state.lastError = undefined;
+        try {
+          await cleanupBorrowedTag(state);
+        } catch (error) {
+          state.lastError = `cleanup_failed:${error instanceof Error ? error.message : String(error)}`;
+        }
         await saveState(state);
       } else {
         await saveState(state);
@@ -233,7 +276,15 @@ async function processJob(job: EmailJob, now: Date) {
   try {
     if (!state.includeTagIds || !state.excludeTagIds) {
       const tags = await listTags();
-      state.includeTagIds = await resolveIncludeTagIds(job, tags);
+      if (job.reuseEmptyIncludeTagForTest) {
+        const borrowed = await findEmptyTag(tags);
+        state.includeTagIds = [borrowed.id];
+        state.borrowedTagId = borrowed.id;
+        state.borrowedTagName = borrowed.name;
+        state.testTagCleaned = false;
+      } else {
+        state.includeTagIds = await resolveIncludeTagIds(job, tags);
+      }
       state.excludeTagIds = resolveTagIds(job.excludeTagNames ?? [], tags);
       await saveState(state);
     }
