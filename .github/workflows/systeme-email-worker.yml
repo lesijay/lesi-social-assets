@@ -26,7 +26,7 @@ jobs:
 
       - name: Run email worker
         env:
-          SYSTEME_API_KEY: ${{ secrets.SYSTEME_API_KEY }}
+          SYSTEME_API_KEY: ${{ secrets.SYSTEME_API_KEY_2 }}
         run: node automation/github-email-worker.mjs
 
       - name: Persist worker state
