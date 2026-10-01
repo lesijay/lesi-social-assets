@@ -33,7 +33,7 @@ async function systemeFetch(path, init = {}) {
 }
 
 try {
-  await systemeFetch("/api/tags?limit=1&order=asc");
+  await systemeFetch("/api/tags?limit=10&order=asc");
   console.log("Systeme API authentication verified.");
 } catch (error) {
   console.error(`Systeme API authentication failed: ${error instanceof Error ? error.message : String(error)}`);
