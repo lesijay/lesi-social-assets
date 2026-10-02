@@ -44,16 +44,17 @@
       ],
       "excludeTagNames": [],
       "scheduleLeadMinutes": 360,
-      "workerStatus": "scheduled",
+      "workerStatus": "published",
       "workerNote": "Hands-off October 2 architecture test and genuine Parenting Prayer reminder.",
       "includeTagIds": [
         1878410
       ],
       "excludeTagIds": [],
-      "lastAttemptAt": "2026-10-02T01:30:25.351Z",
+      "lastAttemptAt": "2026-10-02T07:33:03.841Z",
       "newsletterId": 5380542,
       "lastError": null,
-      "scheduledAt": "2026-10-02T01:30:25.351Z"
+      "scheduledAt": "2026-10-02T01:30:25.351Z",
+      "publishedAt": "2026-10-02T07:33:03.841Z"
     }
   ]
 }
