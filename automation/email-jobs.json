@@ -55,6 +55,30 @@
       "lastError": null,
       "scheduledAt": "2026-10-02T01:30:25.351Z",
       "publishedAt": "2026-10-02T07:33:03.841Z"
+    },
+    {
+      "id": "LL-E003",
+      "sourceDistributionId": "DIST-011",
+      "sourceQueue": "Lit Lambs Production Queue",
+      "approved": true,
+      "enabled": true,
+      "sendAt": "2026-10-11T18:00:00Z",
+      "subject": "What does your child hear when someone gets it wrong?",
+      "bodyText": "Have you ever been really upset about something someone did and talked about it in front of your children?\n\n“She’s so irresponsible.”\n\n“He’s selfish.”\n\n“That’s just the way she is.”\n\nMaybe what the person did was genuinely wrong, and you felt frustrated or hurt.\n\nBut there’s something I need us to pay attention to as parents.\n\nOur children do not only learn from what we say to them. They also learn from how we talk about other people, especially when those people do something wrong.\n\nWhen a child repeatedly hears us label a whole person because of something they did, they could begin to connect the wrong action to the person’s identity.\n\nShe acted irresponsibly, so she is irresponsible.\n\nAnd that same thinking could become:\n\nI failed, so I am a failure.\n\nI did something bad, so I am bad.\n\nI acted irresponsibly, so I am irresponsible.\n\nAnd I’m not sure that is what we want.\n\nWe want children who know who they are and can make mistakes without taking on the label of their mistakes.\n\nSo while we are intentional about affirming their identity, let’s also pay attention to what we may be teaching indirectly through the way we talk about other people.\n\nLesi\nFounder, Lit Lambs",
+      "senderEmail": "lesi@litlambs.org",
+      "senderName": "Lesi Sampson",
+      "includeTagNames": [
+        "TTBWD Live Class Lead",
+        "WEBINAR - REGISTERED",
+        "Academy Member",
+        "Challenge Alumni",
+        "TIER 2",
+        "commitment active"
+      ],
+      "excludeTagNames": [],
+      "scheduleLeadMinutes": 360,
+      "workerStatus": "pending",
+      "workerNote": "Approved first Lit Lambs weekly-letter deliverability warm-up send. Use OR semantics across the six approved existing tags. Do not include MAIN LIST."
     }
   ]
 }
