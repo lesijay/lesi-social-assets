@@ -77,8 +77,21 @@
       ],
       "excludeTagNames": [],
       "scheduleLeadMinutes": 360,
-      "workerStatus": "pending",
-      "workerNote": "Approved first Lit Lambs weekly-letter deliverability warm-up send. Use OR semantics across the six approved existing tags. Do not include MAIN LIST."
+      "workerStatus": "scheduled",
+      "workerNote": "Approved first Lit Lambs weekly-letter deliverability warm-up send. Use OR semantics across the six approved existing tags. Do not include MAIN LIST.",
+      "includeTagIds": [
+        2056469,
+        1623555,
+        1878332,
+        1711697,
+        1694353,
+        1674740
+      ],
+      "excludeTagIds": [],
+      "lastAttemptAt": "2026-10-11T15:06:30.835Z",
+      "newsletterId": 5422395,
+      "lastError": null,
+      "scheduledAt": "2026-10-11T15:06:30.835Z"
     }
   ]
 }
