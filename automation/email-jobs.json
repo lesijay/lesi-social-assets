@@ -93,6 +93,30 @@
       "lastError": null,
       "scheduledAt": "2026-10-11T15:06:30.835Z",
       "publishedAt": "2026-10-11T19:34:47.225Z"
+    },
+    {
+      "id": "LL-E004",
+      "sourceDistributionId": "DIST-032",
+      "sourceQueue": "Lit Lambs Production Queue",
+      "approved": true,
+      "enabled": true,
+      "sendAt": "2026-10-18T18:00:00Z",
+      "subject": "I don't want my children to be afraid of mistakes",
+      "bodyText": "One thing I don't want to teach my children, directly or indirectly, is that getting something wrong is dangerous.\n\nI don't want my children to be afraid of failure.\n\nI want them to be willing to try new things, even when they're not sure they'll get them right. And when they make mistakes, I want them to be able to acknowledge what happened, take responsibility and learn from the experience.\n\nOf course, there will be consequences for certain actions, and sometimes they'll need to make things right.\n\nBut I think how we respond as parents matters a lot.\n\nWhen our children make mistakes, are we helping them understand what went wrong and what they could do differently? Or are our reactions making them afraid to admit when they've got something wrong?\n\nAnd I think that's something we need to be intentional about as parents.\n\nLesi\n\nFounder, Lit Lambs",
+      "senderEmail": "lesi@litlambs.org",
+      "senderName": "Lesi Sampson",
+      "includeTagNames": [
+        "TTBWD Live Class Lead",
+        "WEBINAR - REGISTERED",
+        "Academy Member",
+        "Challenge Alumni",
+        "TIER 2",
+        "commitment active"
+      ],
+      "excludeTagNames": [],
+      "scheduleLeadMinutes": 360,
+      "workerStatus": "pending",
+      "workerNote": "Approved second Lit Lambs weekly-letter warm-up send. Repeat the exact Oct 11 six-tag OR cohort because LL-E003 is confirmed published but detailed delivery/bounce/complaint metrics are not independently available. Do not include MAIN LIST."
     }
   ]
 }
