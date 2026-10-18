@@ -115,7 +115,7 @@
       ],
       "excludeTagNames": [],
       "scheduleLeadMinutes": 360,
-      "workerStatus": "scheduled",
+      "workerStatus": "published",
       "workerNote": "Approved second Lit Lambs weekly-letter warm-up send. Repeat the exact Oct 11 six-tag OR cohort because LL-E003 is confirmed published but detailed delivery/bounce/complaint metrics are not independently available. Do not include MAIN LIST.",
       "includeTagIds": [
         2056469,
@@ -126,10 +126,11 @@
         1674740
       ],
       "excludeTagIds": [],
-      "lastAttemptAt": "2026-10-18T14:26:46.655Z",
+      "lastAttemptAt": "2026-10-18T19:42:14.671Z",
       "newsletterId": 5454428,
       "lastError": null,
-      "scheduledAt": "2026-10-18T14:26:46.655Z"
+      "scheduledAt": "2026-10-18T14:26:46.655Z",
+      "publishedAt": "2026-10-18T19:42:14.671Z"
     }
   ]
 }
