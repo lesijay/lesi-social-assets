@@ -131,6 +131,30 @@
       "lastError": null,
       "scheduledAt": "2026-10-18T14:26:46.655Z",
       "publishedAt": "2026-10-18T19:42:14.671Z"
+    },
+    {
+      "id": "LL-E005",
+      "sourceDistributionId": "DIST-047",
+      "sourceQueue": "Lit Lambs Production Queue",
+      "approved": true,
+      "enabled": true,
+      "sendAt": "2026-11-08T18:00:00Z",
+      "subject": "When a family system stops fitting",
+      "bodyText": "Have you ever had a routine that used to work so well for your family, and then suddenly it just stopped working?\n\nI think sometimes we keep trying to force it because we feel like changing it means we were not consistent enough.\n\nBut families change.\n\nChildren grow. Schedules change. Responsibilities change.\n\nSo the system may need to change too.\n\nThat does not mean you failed.\n\nA family system is supposed to serve your family. Your family is not supposed to struggle just to keep the system alive.\n\nSo if something that used to work is no longer working, it may simply be time to adjust it.\n\nLesi\nFounder, Lit Lambs",
+      "senderEmail": "lesi@litlambs.org",
+      "senderName": "Lesi Sampson",
+      "includeTagNames": [
+        "TTBWD Live Class Lead",
+        "WEBINAR - REGISTERED",
+        "Academy Member",
+        "Challenge Alumni",
+        "TIER 2",
+        "commitment active"
+      ],
+      "excludeTagNames": [],
+      "scheduleLeadMinutes": 360,
+      "workerStatus": "pending",
+      "workerNote": "Approved LL-E005 short conversational version. Rescheduled from missed Nov 1 target to Sun Nov 8 2026 at 18:00 GMT. Preserve exact six-tag OR warm-up cohort used for LL-E004. Do not include MAIN LIST. No FOS campaign bridge."
     }
   ]
 }
