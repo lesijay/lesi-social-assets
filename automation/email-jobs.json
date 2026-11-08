@@ -153,7 +153,7 @@
       ],
       "excludeTagNames": [],
       "scheduleLeadMinutes": 360,
-      "workerStatus": "scheduled",
+      "workerStatus": "published",
       "workerNote": "Approved LL-E005 short conversational version. Rescheduled from missed Nov 1 target to Sun Nov 8 2026 at 18:00 GMT. Preserve exact six-tag OR warm-up cohort used for LL-E004. Do not include MAIN LIST. No FOS campaign bridge.",
       "includeTagIds": [
         2056469,
@@ -164,10 +164,11 @@
         1674740
       ],
       "excludeTagIds": [],
-      "lastAttemptAt": "2026-11-08T15:17:10.213Z",
+      "lastAttemptAt": "2026-11-08T19:54:40.105Z",
       "newsletterId": 5556473,
       "lastError": null,
-      "scheduledAt": "2026-11-08T15:17:10.213Z"
+      "scheduledAt": "2026-11-08T15:17:10.213Z",
+      "publishedAt": "2026-11-08T19:54:40.105Z"
     }
   ]
 }
