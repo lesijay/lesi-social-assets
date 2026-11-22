@@ -191,8 +191,21 @@
       ],
       "excludeTagNames": [],
       "scheduleLeadMinutes": 360,
-      "workerStatus": "pending",
-      "workerNote": "Owner approved exact final subject/body 17 Nov 2026 10:24 GH; J/V Approve, no salutation, signoff Lesi. Six-tag OR warm-up only; MAIN LIST excluded. No Substack or sales CTA. Worker must schedule natively; manifest alone is not provider confirmation."
+      "workerStatus": "scheduled",
+      "workerNote": "Owner approved exact final subject/body 17 Nov 2026 10:24 GH; J/V Approve, no salutation, signoff Lesi. Six-tag OR warm-up only; MAIN LIST excluded. No Substack or sales CTA. Worker must schedule natively; manifest alone is not provider confirmation.",
+      "includeTagIds": [
+        2056469,
+        1623555,
+        1878332,
+        1711697,
+        1694353,
+        1674740
+      ],
+      "excludeTagIds": [],
+      "lastAttemptAt": "2026-11-22T17:01:25.514Z",
+      "newsletterId": 5633145,
+      "lastError": null,
+      "scheduledAt": "2026-11-22T17:01:25.514Z"
     },
     {
       "id": "LL-E009",
