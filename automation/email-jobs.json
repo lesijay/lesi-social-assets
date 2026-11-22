@@ -169,6 +169,54 @@
       "lastError": null,
       "scheduledAt": "2026-11-08T15:17:10.213Z",
       "publishedAt": "2026-11-08T19:54:40.105Z"
+    },
+    {
+      "id": "LL-E008",
+      "sourceDistributionId": null,
+      "sourceQueue": "Lit Lambs Production Queue",
+      "approved": true,
+      "enabled": true,
+      "sendAt": "2026-11-22T18:00:00Z",
+      "subject": "What our children are learning from ordinary days at home",
+      "bodyText": "I have been thinking about how much our children learn at home without anyone sitting down to teach them.\n\nWe tell them to be kind, respectful and honest. But they are also watching how we speak when we are upset, how we treat someone who made a mistake, and how we respond when things do not go as planned.\n\nOver time, these ordinary moments teach them what is normal in our family.\n\nThis is not about getting every response right. None of us will. It is about recognising that our everyday choices are teaching something, and being willing to adjust when what we model does not match what we say we value.\n\nPerhaps one question to sit with this week is:\n\nWhat are my children learning from the way we live together, beyond the things I deliberately teach them?\n\nLesi",
+      "senderEmail": "lesi@litlambs.org",
+      "senderName": "Lesi Sampson",
+      "includeTagNames": [
+        "TTBWD Live Class Lead",
+        "WEBINAR - REGISTERED",
+        "Academy Member",
+        "Challenge Alumni",
+        "TIER 2",
+        "commitment active"
+      ],
+      "excludeTagNames": [],
+      "scheduleLeadMinutes": 360,
+      "workerStatus": "pending",
+      "workerNote": "Owner approved exact final subject/body 17 Nov 2026 10:24 GH; J/V Approve, no salutation, signoff Lesi. Six-tag OR warm-up only; MAIN LIST excluded. No Substack or sales CTA. Worker must schedule natively; manifest alone is not provider confirmation."
+    },
+    {
+      "id": "LL-E009",
+      "sourceDistributionId": null,
+      "sourceQueue": "Lit Lambs Production Queue",
+      "approved": true,
+      "enabled": true,
+      "sendAt": "2026-11-29T18:00:00Z",
+      "subject": "The chore is not the goal",
+      "bodyText": "Sometimes, we look at a chore and see only the work that needs to get done.\n\nThe bed needs to be made. The shoes need to be put away. The dishes need to be washed.\n\nAnd a lot of times, it can feel easier to do these things ourselves, or get another adult to do them, than involve the children.\n\nBut here is something worth bearing in mind.\n\nThe task getting done is not the only thing that matters.\n\nWhat matters even more is giving children the opportunity to contribute to their environment.\n\nThrough these little responsibilities, they learn to notice what needs attention. They learn to take responsibility for their space and follow through, even when it is not convenient.\n\nThese are attitudes and character qualities they can carry into adulthood, first as contributing members of the family and eventually of society.\n\nOf course, they will not always do things well. We will still need to teach them, remind them and call their attention back to what needs to be done.\n\nBut rather than focusing only on whether the task was completed, we also need to appreciate what their involvement is helping them become.\n\nBecause the chore is not the goal.\n\nRaising children who are responsible, aware and willing to contribute is.\n\nLesi",
+      "senderEmail": "lesi@litlambs.org",
+      "senderName": "Lesi Sampson",
+      "includeTagNames": [
+        "TTBWD Live Class Lead",
+        "WEBINAR - REGISTERED",
+        "Academy Member",
+        "Challenge Alumni",
+        "TIER 2",
+        "commitment active"
+      ],
+      "excludeTagNames": [],
+      "scheduleLeadMinutes": 360,
+      "workerStatus": "pending",
+      "workerNote": "Owner approved exact final subject/body 17 Nov 2026 10:24 GH; J/V Approve, no salutation, signoff Lesi. Six-tag OR warm-up only; MAIN LIST excluded. No Substack or sales CTA. Worker must schedule natively; manifest alone is not provider confirmation."
     }
   ]
 }
